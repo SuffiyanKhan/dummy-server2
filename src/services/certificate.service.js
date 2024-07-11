@@ -1,4 +1,4 @@
-import app from '../../server.js';
+import app from '../../index.js';
 import pLimit from 'p-limit';
 import puppeteer from "puppeteer";
 import fs from 'fs';
