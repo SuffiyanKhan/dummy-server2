@@ -18,9 +18,6 @@ const pdfDir = path.join(__dirname, 'temp/pdfs');
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const apiKey = defaultClient.authentications['api-key'];
 apiKey.apiKey = serverConfig.sendinblueapikey;
-// apiKey.apiKey = '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';
-
-
 
 const startRealTimeTracking = async () => {
     try {
