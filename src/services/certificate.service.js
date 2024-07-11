@@ -55,7 +55,6 @@ console.log(files)
         console.log('Temporary folder cleaned up.');
     });
 };
-cleanupTempFolder()
 async function generateCertificates(dataArray) {
     const totalDataLength = dataArray.length;
     console.log('Total Data Length:', totalDataLength);
