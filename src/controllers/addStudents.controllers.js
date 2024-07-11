@@ -16,11 +16,6 @@ const addStudentsData = async (req, res) => {
 
 const dummyaddStudentsData = async (req, res) => {
     try {
-        // const { name, course, date, email, cnic, batchNo, rollno } = req.body;
-        // const data = {
-        //     name, course, date, email, cnic, batchNo, rollno
-        // }.
-       
         const saveaStudentsData = await dummaddStudents(req.body.data)
         return res.status(200).json({ status: 200, message: "success", saveaStudentsData })
     } catch (error) {
