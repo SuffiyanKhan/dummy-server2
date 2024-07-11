@@ -25,14 +25,31 @@ const dummyaddStudentsData = async (req, res) => {
 }
 
 
+// const getAllStudentsData = async (req, res) => {
+//     try {
+//         const response = await fetchAllStudentsData()
+//         return res.status(200).json({ message: "success", studentsData: response })
+//     } catch (error) {
+//         return res.status(500).json({ message: "To Failed Fecth Data From Database" })
+//     }
+// }
+
 const getAllStudentsData = async (req, res) => {
     try {
-        const response = await fetchAllStudentsData()
-        return res.status(200).json({ message: "success", studentsData: response })
+        // Assuming fetchAllStudentsData() is an async function that fetches data
+        const response = await fetchAllStudentsData();
+
+        if (!response) {
+            return res.status(404).json({ message: "No data found" });
+        }
+
+        return res.status(200).json({ message: "success", studentsData: response });
     } catch (error) {
-        return res.status(500).json({ message: "To Failed Fecth Data From Database" })
+        console.error("Error fetching students data:", error);
+        return res.status(500).json({ message: "Failed to fetch data from database" });
     }
 }
+
 
 export {
     addStudentsData,
