@@ -18,7 +18,6 @@ const pdfDir = path.join(__dirname, 'temp/pdfs');
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const apiKey = defaultClient.authentications['api-key'];
 apiKey.apiKey = serverConfig.sendinblueapikey;
-// apiKey.apiKey = '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';
 
 
 
@@ -109,28 +108,6 @@ SMIT team`,
             ]
         }).then(res => console.log(`Success sending email to suffiyanahmed804092@gmail.com`))
             .catch(err => console.log(`Error sending email to suffiyanahmed804092@gmail.com`))
-        // // Send email using Sendinblue
-        // const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
-        // const sender = {
-        //     email: "suffiyanahmed804092@gmail.com",
-        //     name: "Saylani It Mass Training"
-        // };
-        // const receiver = [{
-        //     email: certificate.email
-        // }];
-
-        // // Attach the PDF to the email
-        // const sendEmail = await apiInstance.sendTransacEmail({
-        //     sender,
-        //     // to: "suffiyanahmed804092@gmail.com",
-        //     to: receiver,
-        //     subject: "Your Certificate",
-        //     htmlContent: "<p>Please find your certificate attached.</p>",
-        //     // attachment: [{
-        //     //     name: `${certificate.rollno}.pdf`,
-        //     //     content: pdfBuffer.toString('base64') // Attach PDF as base64 content
-        //     // }]
-        // });
 
         certificate.isEmail = true;
         await certificate.save();
@@ -156,7 +133,6 @@ const getAllIssuedCertificates = async () => {
 const serachData = async (query) => {
     try {
         const responseData = await Certificate.find({ rollno: { $regex: new RegExp(query, 'i') } });
-        // console.log(responseData)
         return responseData
     } catch (error) {
         throw error
