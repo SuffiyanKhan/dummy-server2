@@ -3,7 +3,7 @@ import { login, logout, updateemail, sendOtpByEmail, updatepassword, saveCertifi
 import { certificategenerate,getAllcertificategenerate } from '../controllers/certificate.controller.js';
 import { AllCourse, getAllCours, deletecourse } from '../controllers/courses.controllers.js';
 import { addStudentsData,getAllStudentsData,dummyaddStudentsData } from '../controllers/addStudents.controllers.js';
-import { sendEmail } from '../controllers/sendEmail.controllers.js';
+import { getCertificates, searchIussedCertificatyes, sendEmail } from '../controllers/sendEmail.controllers.js';
 const route = express.Router();
 
 route.post('/saveCertificate', saveCertificate)
@@ -22,7 +22,8 @@ route.get('/getAllStudents', getAllStudentsData)
 route.post('/generate', certificategenerate)
 route.get('/getAllCertificates', getAllcertificategenerate)
 route.post('/send-Email',sendEmail)
-
+route.get("/getallissuedcertificate",getCertificates)
+route.get("/serachissuedcertificate",searchIussedCertificatyes)
 
 export default route
 

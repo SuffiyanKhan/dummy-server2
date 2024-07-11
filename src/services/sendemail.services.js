@@ -18,6 +18,9 @@ const pdfDir = path.join(__dirname, 'temp/pdfs');
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const apiKey = defaultClient.authentications['api-key'];
 apiKey.apiKey = serverConfig.sendinblueapikey;
+// apiKey.apiKey = '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';
+
+
 
 const startRealTimeTracking = async () => {
     try {
@@ -89,8 +92,15 @@ async function sendCertificateEmail(certificate) {
         console.log(`Saved PDF for document with ID: ${certificate.name}`);
         await sendEmail({
             to: certificate.email,
-            subject: 'Your Course Completion Certificate',
-            text: `Dear ${data.name},\n\nCongratulations on completing the ${data.course} course. Attached is your certificate.\n\nBest regards,\nYour Team`,
+            subject: `Congratulations  ${certificate.name}!Your Certificate for ${certificate.course} is Ready to Download`,
+            text: `Dear ${certificate.name},\n\nCongratulations on successfully completing the ${certificate.course}!
+We are pleased to inform you that your certificate is now available for download. \n\n
+To access your certificate, please click on the link below:${certificate.certificateUrl}
+We encourage you to share your achievement on social media using the integrated sharing options.\n\n
+This is a great way to showcase your hard work and dedication to your network.
+If you have any questions or need further assistance, please do not hesitate to contact us.\n\n
+Best regards,\n\n
+SMIT team`,
             attachments: [
                 {
                     filename: 'certificate.pdf',
@@ -122,7 +132,7 @@ async function sendCertificateEmail(certificate) {
         //     // }]
         // });
 
-        certificate.isEmail = false;
+        certificate.isEmail = true;
         await certificate.save();
         fs.unlinkSync(pdfPath);
         console.log(`Certificate email sent to ${certificate.email} `);
@@ -134,8 +144,29 @@ async function sendCertificateEmail(certificate) {
     }
 }
 
+const getAllIssuedCertificates = async () => {
+    try {
+        const getCertificates = await Certificate.find({ isEmail: true }).exec();
+        return getCertificates
+    } catch (error) {
+        throw error
+    }
+}
+
+const serachData = async (query) => {
+    try {
+        const responseData = await Certificate.find({ rollno: { $regex: new RegExp(query, 'i') } });
+        // console.log(responseData)
+        return responseData
+    } catch (error) {
+        throw error
+    }
+}
+
 export {
     fetchNewAndUpdateCertificates,
     processCertificates,
     startRealTimeTracking,
+    getAllIssuedCertificates,
+    serachData
 }
