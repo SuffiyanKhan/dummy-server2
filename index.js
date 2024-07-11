@@ -73,7 +73,12 @@ app.use(cors())
 
 
 
-app.use('/', route)
+app.use('/api', route)
+
+app.get('/', (req, res) => {
+    return res.status(200).json({ status: 200, message: "success" })
+})
+
 app.listen(PORT, () => {
     console.log(`server is running on port  ${PORT}`)
 })

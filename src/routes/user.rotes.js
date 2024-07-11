@@ -5,9 +5,6 @@ import { AllCourse, getAllCours, deletecourse } from '../controllers/courses.con
 import { addStudentsData, getAllStudentsData, dummyaddStudentsData } from '../controllers/addStudents.controllers.js';
 import { getCertificates, searchIussedCertificatyes, sendEmail } from '../controllers/sendEmail.controllers.js';
 const route = express.Router();
-route.get('/api', (req, res) => {
-    return res.status(200).json({ status: 200, message: "success" })
-})
 route.post('/saveCertificate', saveCertificate)
 route.post('/adminpassword', addPassword)
 route.post('/login', login)
