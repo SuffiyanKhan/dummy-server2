@@ -36,8 +36,7 @@ const dummyaddStudentsData = async (req, res) => {
 
 const getAllStudentsData = async (req, res) => {
     try {
-        
-        // Assuming fetchAllStudentsData() is an async function that fetches data
+
         const response = await fetchAllStudentsData();
 
         if (!response) {
